@@ -261,12 +261,17 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
       />
     ));
 
+    const Container = this.props.editable ? (<TouchableWithoutFeedback
+      onPress={this.focus}
+      style={styles.container}
+      onLayout={this.measureWrapper}
+    />) : (<View
+      style={styles.container}
+      onLayout={this.measureWrapper}
+    />)
+
     return (
-      <TouchableWithoutFeedback
-        onPress={this.props.editable && this.focus}
-        style={styles.container}
-        onLayout={this.measureWrapper}
-      >
+      <Container>
         <View style={[styles.wrapper, { height: this.state.wrapperHeight }]}>
           <ScrollView
             ref={this.scrollViewRef}
@@ -307,7 +312,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
             </View>
           </ScrollView>
         </View>
-      </TouchableWithoutFeedback>
+      </Container>
     )
   }
 
