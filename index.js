@@ -261,14 +261,23 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
       />
     ));
 
-    const Container = this.props.editable ? (<TouchableWithoutFeedback
-      onPress={this.focus}
-      style={styles.container}
-      onLayout={this.measureWrapper}
-    />) : (<View
-      style={styles.container}
-      onLayout={this.measureWrapper}
-    />)
+    const Container = (containerProps) => 
+      this.props.editable ? (
+        <TouchableWithoutFeedback
+          onPress={this.focus}
+          style={styles.container}
+          onLayout={this.measureWrapper}
+        >
+          {containerProps.children}
+        </TouchableWithoutFeedback>
+      ) : (
+        <View
+          style={styles.container}
+          onLayout={this.measureWrapper}
+        >
+          {containerProps.children}
+        </View>
+      )
 
     return (
       <Container>
