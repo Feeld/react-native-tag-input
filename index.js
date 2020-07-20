@@ -263,7 +263,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
 
     return (
       <TouchableWithoutFeedback
-        onPress={this.focus}
+        onPress={this.props.editable && this.focus}
         style={styles.container}
         onLayout={this.measureWrapper}
       >
@@ -405,7 +405,7 @@ class Tag extends React.PureComponent<TagProps> {
             this.props.tagTextStyle,
           ]}>
             {this.props.label}
-            &nbsp;&times;
+            {this.props.editable  && `&nbsp;&times;`}
         </Text>
       );
     }
